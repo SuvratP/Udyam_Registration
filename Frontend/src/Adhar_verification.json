@@ -1,0 +1,47 @@
+{
+  "formTitle": "Aadhaar Verification With OTP",
+  "fields": [
+    {
+      "id": "aadhaar_number",
+      "label": "Aadhaar Number / आधार संख्या",
+      "type": "text",
+      "placeholder": "Your Aadhaar No",
+      "required": true,
+      "validation": {
+        "pattern": "^[0-9]{12}$",
+        "errorMessage": "Please enter a valid 12-digit Aadhaar number."
+      }
+    },
+    {
+      "id": "entrepreneur_name",
+      "label": "Name of Entrepreneur / उद्यमी का नाम",
+      "type": "text",
+      "placeholder": "",
+      "required": true
+    },
+    {
+      "id": "aadhaar_consent",
+      "type": "checkbox",
+      "label": "I, the holder of the above Aadhaar, hereby give my consent to Ministry of MSME, Government of India, for using my Aadhaar number as allotted by UIDAI for Udyam Registration...",
+      "required": true
+    }
+  ],
+  "instructions": [
+    "Aadhaar number shall be required for Udyam Registration.",
+    "The Aadhaar number shall be of the proprietor in the case of a proprietorship firm, of the managing partner in the case of a partnership firm and of a karta in the case of a Hindu Undivided Family (HUF).",
+    "In case of a Company or a Limited Liability Partnership or a Cooperative Society or a Society or a Trust, the organisation or its authorised signatory shall provide its GSTIN (As per applicability of CGST Act 2017 and as notified by the ministry of MSME vide S.O. 1055(E) dated 05th March 2021) and PAN along with its Aadhaar number."
+  ],
+  "buttons": [
+    {
+      "id": "generate_otp",
+      "label": "Validate & Generate OTP",
+      "action": "generateOTP"
+    }
+  ],
+  "errorMessages": [
+    "There is error in Aadhaar Validation/Authentication.",
+    "Error Code: Invalid Auth XML format. 510",
+    "Your Aadhaar has not been validated hence you cannot register Udyam.",
+    "Please Visit Your Nearest Aadhaar Enrolment Centre."
+  ]
+}

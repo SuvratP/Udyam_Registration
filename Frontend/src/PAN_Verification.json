@@ -1,0 +1,64 @@
+{
+    "formTitle": "PAN Verification",
+    "fields": [
+      {
+        "id": "organisation_type",
+        "label": "Type of Organisation / संगठन के प्रकार",
+        "type": "select",
+        "placeholder": "Type of Organisation / संगठन के प्रकार",
+        "required": true,
+        "options": [
+          { "value": "proprietary", "label": "1. Proprietary / एकल स्वामित्व" },
+          { "value": "huf", "label": "2. Hindu Undivided Family / हिन्दू अविभाजित परिवार (एचयूएफ)" },
+          { "value": "partnership", "label": "3. Partnership / पार्टनरशिप" },
+          { "value": "cooperative", "label": "4. Co-Operative / सहकारी" },
+          { "value": "private_limited", "label": "5. Private Limited Company / प्राइवेट लिमिटेड कंपनी" },
+          { "value": "public_limited", "label": "6. Public Limited Company / पब्लिक लिमिटेड कंपनी" },
+          { "value": "self_help_group", "label": "7. Self Help Group / स्वयं सहायता समूह" },
+          { "value": "llp", "label": "8. Limited Liability Partnership / सीमित दायित्व भागीदारी" },
+          { "value": "society", "label": "9. Society / सोसाइटी" },
+          { "value": "trust", "label": "10. Trust / ट्रस्ट" },
+          { "value": "others", "label": "11. Others / अन्य" }
+        ]
+      },
+      {
+        "id": "pan_number",
+        "label": "PAN / पैन",
+        "type": "text",
+        "placeholder": "Enter PAN Number",
+        "required": true,
+        "validation": {
+          "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+          "errorMessage": "Please enter a valid 10-character PAN."
+        }
+      },
+      {
+        "id": "pan_holder_name",
+        "label": "Name of PAN Holder / पैन धारक का नाम",
+        "type": "text",
+        "placeholder": "Name as per PAN",
+        "required": true
+      },
+      {
+        "id": "dob_doi",
+        "label": "DOB or DOI as per PAN / पैन के अनुसार जन्म तिथि या निगमण तिथि",
+        "type": "date",
+        "placeholder": "DD/MM/YYYY",
+        "required": true
+      },
+      {
+        "id": "pan_consent",
+        "type": "checkbox",
+        "label": "I, the holder of the above PAN, hereby give my consent to Ministry of MSME, Government of India, for using my data/information available in the Income Tax Returns filed by me...",
+        "required": true
+      }
+    ],
+    "buttons": [
+      {
+        "id": "pan_validate",
+        "label": "PAN Validate",
+        "action": "validatePAN"
+      }
+    ]
+  }
+  
