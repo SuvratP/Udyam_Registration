@@ -76,7 +76,9 @@ https://udyam-backend-sw8y.onrender.com
 ## API
 
 POST /api/aadhaar  → Aadhaar verification
+
 POST /api/pan     → PAN verification
+
 POST /api/verify-otp    → OTP verification
 
 ## Folder Structure
