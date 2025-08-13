@@ -175,17 +175,6 @@ As part of the project, we performed web scraping on the first two steps of the 
 - Extracted all input fields: Aadhaar number, name, PAN, DOB, consent checkboxes, dropdowns, etc.  
 - Captured validation rules: regex patterns for Aadhaar and PAN, required fields  
 - Saved data in JSON format for frontend use  
-## Demo
-
-Insert gif or link to demo
-
-
-## Used By
-
-This project is used by the following companies:
-
-- Company 1
-- Company 2
 
 
 ## Run Locally
