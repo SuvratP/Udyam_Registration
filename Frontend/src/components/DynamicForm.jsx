@@ -15,16 +15,13 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
     const newErrors = {};
 
     for (const field of schema.fields) {
-      const value = formData[field.id] ?? ''; // <-- safe access with default empty string
+      const value = formData[field.id] ?? '';
 
       if (field.required) {
         if (field.type === 'checkbox' && !value) {
           valid = false;
           newErrors[field.id] = 'This field is required.';
-        } else if (
-          (value === undefined || value === null || value === '') &&
-          field.type !== 'checkbox'
-        ) {
+        } else if ((value === undefined || value === null || value === '') && field.type !== 'checkbox') {
           valid = false;
           newErrors[field.id] = 'This field is required.';
         }
@@ -45,17 +42,19 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      onSubmit(formData);
-    }
+    if (validate()) onSubmit(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="bg-white p-6 rounded shadow-md w-full max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">{schema.formTitle}</h2>
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="w-full max-w-lg mx-auto p-8 rounded-2xl bg-white bg-opacity-70 backdrop-blur-md shadow-2xl overflow-auto"
+    >
+      <h2 className="text-3xl font-bold mb-6 text-center text-indigo-700">{schema.formTitle}</h2>
 
       {schema.instructions && (
-        <ul className="mb-6 list-disc list-inside text-sm text-gray-600">
+        <ul className="mb-6 list-disc list-inside text-gray-600 text-sm">
           {schema.instructions.map((text, i) => (
             <li key={i}>{text}</li>
           ))}
@@ -64,13 +63,17 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
 
       {schema.fields.map(field => {
         const error = errors[field.id];
-        const value = formData[field.id] ?? ''; // <-- safe fallback here too
+        const value = formData[field.id] ?? '';
+
+        const commonInputClasses =
+          "w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200 shadow-sm";
+
         switch (field.type) {
           case 'text':
           case 'date':
             return (
-              <div key={field.id} className="mb-4">
-                <label htmlFor={field.id} className="block text-gray-700 mb-1 font-medium">
+              <div key={field.id} className="mb-5">
+                <label htmlFor={field.id} className="block text-gray-700 font-medium mb-1">
                   {field.label}{field.required && <span className="text-red-500">*</span>}
                 </label>
                 <input
@@ -79,8 +82,7 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
                   placeholder={field.placeholder}
                   value={value}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500
-                    ${error ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`${commonInputClasses} ${error ? 'border-red-500' : 'border-gray-300'}`}
                   disabled={loading}
                 />
                 {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
@@ -89,34 +91,33 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
 
           case 'checkbox':
             return (
-              <div key={field.id} className="mb-4 flex items-start">
+              <div key={field.id} className="mb-5 flex items-center">
                 <input
                   id={field.id}
                   type="checkbox"
                   checked={!!value}
                   onChange={handleChange}
-                  className="mt-1 mr-2 h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  className="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-3"
                   disabled={loading}
                 />
                 <label htmlFor={field.id} className="text-gray-700 font-medium">
                   {field.label}{field.required && <span className="text-red-500">*</span>}
                 </label>
-                {error && <p className="text-red-600 text-sm mt-1 ml-7">{error}</p>}
+                {error && <p className="text-red-600 text-sm mt-1 ml-8">{error}</p>}
               </div>
             );
 
           case 'select':
             return (
-              <div key={field.id} className="mb-4">
-                <label htmlFor={field.id} className="block text-gray-700 mb-1 font-medium">
+              <div key={field.id} className="mb-5">
+                <label htmlFor={field.id} className="block text-gray-700 font-medium mb-1">
                   {field.label}{field.required && <span className="text-red-500">*</span>}
                 </label>
                 <select
                   id={field.id}
                   value={value}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500
-                    ${error ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`${commonInputClasses} ${error ? 'border-red-500' : 'border-gray-300'} bg-white`}
                   disabled={loading}
                 >
                   <option value="" disabled>{field.placeholder || 'Select'}</option>
@@ -133,13 +134,13 @@ function DynamicForm({ schema, formData = {}, setFormData, errors, setErrors, on
         }
       })}
 
-      <div className="mt-6">
+      <div className="mt-8">
         {schema.buttons.map(btn => (
           <button
             key={btn.id}
             type="submit"
             id={btn.id}
-            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition-colors"
+            className="w-full bg-indigo-600 text-white py-3 rounded-xl font-medium hover:bg-indigo-700 shadow-md transition duration-200 disabled:opacity-50"
             disabled={loading}
           >
             {btn.label}
