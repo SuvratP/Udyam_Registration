@@ -81,9 +81,6 @@ POST /api/pan     → PAN verification
 
 POST /api/verify-otp    → OTP verification
 
-## Folder Structure
-
-Of course. Here is a version of the folder structure formatted perfectly for a `README.md` file. It uses Markdown code blocks and includes brief descriptions for clarity, which is ideal for new developers joining the project.
 
 -----
 
