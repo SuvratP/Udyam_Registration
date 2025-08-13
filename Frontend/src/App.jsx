@@ -5,7 +5,7 @@ import panSchema from "./PAN_Verification.json";
 import DynamicForm from "./components/DynamicForm";
 import OTPVerification from "./components/OTPVerification";
 
-const backendBaseURL = "http://localhost:5000/api";
+const backendBaseURL = "https://udyam-backend-sw8y.onrender.com/api";
 
 export default function App() {
   const [step, setStep] = useState(1);
