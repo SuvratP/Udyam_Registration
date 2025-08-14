@@ -26,7 +26,7 @@ Install my-project with npm
 
 ```bash
 # Clone the repo
-git clone <your-repo-url>
+git clone <https://github.com/SuvratP/Udyam_Registration>
 
 # Backend setup
 cd backend
